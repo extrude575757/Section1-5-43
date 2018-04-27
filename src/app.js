@@ -9,7 +9,7 @@ class IndecisionApp extends React.Component {
     }
   }
   deleteOptions () {
-    
+    console.log("deleteoptions");
     this.setState(() => ({  options: []})); }
   handleAddOption (option) {
     if (!option) {
