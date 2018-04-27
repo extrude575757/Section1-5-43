@@ -1,0 +1,10 @@
+A <component /> can have props & states when rendering & the component passes props to other
+child components. We have access to props & and states when rendering
+Props & States simulairties
+Props & states are objects: this.props.obj & this.state
+Both can be  accessed when rendering: props can pass data to component when rendering &  so can state
+Changes to both cause re-renders: For state the component itself can change the data. It does it with this.state call
+ -State cannot  cannot change the props data though. If the props data is going to change it is because it is being passed down from the parent. 
+Differences
+Prop is defined from the parent above. Cant be changed by component.
+State is defined by the component itself. Can be changed by component.

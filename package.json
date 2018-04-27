@@ -1,0 +1,14 @@
+{
+    "name": "Section1",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "Long Board",
+    "license": "MIT",
+    "dependencies": {
+        "babel-preset-env": "1.5.2",
+        "babel-preset-react": "6.24.1",
+        "mobx": "^4.2.0",
+        "mobx-react": "^5.0.0-beta.2",
+        "react": "16.0.0"
+    }
+}

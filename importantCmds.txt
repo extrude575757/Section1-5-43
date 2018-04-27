@@ -1,0 +1,37 @@
+\Desktop\Web Design\Courses\Complete_React_Course\Section1
+// Type $r in console to view the global variable it is present for all components 
+  if you are in the react developer tool console and click on a react componenet
+  then switch to the console & type $r, you can view each components global variable that way to see all props & state.
+
+// Babel yarn project react setup
+//command to launch live server once in the directory that will lead to the folder with index.html file lunch this command
+live-server folderNameWithHTMLfile
+
+//Install babel cli globably
+npm install -g babel-cli@6.24.1
+
+//include babel in project by launching this command in project folder 
+yarn init
+
+//(delete node_moduels folder & reinstall it)Install dependice presets into project folder http://babeljs.io/docs/plugins/preset-env/ for presets
+yarn add babel-preset-react@6.24.1 babel-preset-env@1.5.2
+
+// Take jsx code and compile it to react
+babel src/app.js --out-file=public/scripts/app.js --presets=env,react 
+
+// Added with the watch flag will watch for changes in the src folder and add automatically to the scripts folder
+babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
+
+// If a react project is downloaded the node_modules folder will not come with it. To get that folder back launch
+yarn install
+// Then launch the babel command and the depencies will load into the node_modules folder
+
+
+// instal Mobx preset
+ npm install --save-dev babel-preset-mobx
+// Via cli
+babel script.js --presets mobx
+//.bablerc
+{
+  "presets": ["mobx"]
+}
