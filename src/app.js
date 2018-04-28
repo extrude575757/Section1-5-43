@@ -4,13 +4,23 @@ class IndecisionApp extends React.Component {
     this.deleteOptions = this.deleteOptions.bind(this)
     this.pickOptions = this.pickOptions.bind(this)
     this.handleAddOption = this.handleAddOption.bind(this)
+    this.deleteOption = this.deleteOption.bind(this);
     this.state = {
       options: props.options
     }
   }
   deleteOptions () {
     console.log("deleteoptions");
-    this.setState(() => ({  options: []})); };
+    this.setState(() => ({  options: []})); 
+  };
+  deleteOption(optionToRemove) {
+    console.log("deleted" + optionToRemove);
+    this.setState((prevState) => ({
+      options: prevState.options.filter((option) => {
+        return optionToRemove !== option;
+      })
+    }));
+  }
   handleAddOption (option) {
     if (!option) {
       return 'Enter valid value to add item'
@@ -37,7 +47,8 @@ class IndecisionApp extends React.Component {
       <div>
         <Header    quote={quote} />
         <Action hasOptions={this.state.options.length > 0} pickOptions={this.pickOptions} />
-        <Options option1={this.state.options[0]} options={this.state.options} deleteOptions={this.deleteOptions} />
+        <Options option1={this.state.options[0]} options={this.state.options} 
+        deleteOptions={this.deleteOptions} deleteOption={this.deleteOption}/>
         <Option />
         <AddOptions handleAddOption={this.handleAddOption} />
       </div>
@@ -82,7 +93,8 @@ const Options = (props) => {
             Remove All
           </button>
           {
-       props.options.map((option) => <Option key={option} optionText={option} />)}
+       props.options.map((option) => <Option key={option} 
+       optionText={option} deleteOption={props.deleteOption} />)}
         </div>
       )
 };
@@ -91,6 +103,12 @@ const Option = (props) => {
     return (
         <div>
           {props.optionText}
+          <button 
+          onClick={() => {
+            props.deleteOption(props.optionText);
+          }}
+          >
+          Delete</button>
         </div>
       )
 };
