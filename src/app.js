@@ -16,11 +16,8 @@ class IndecisionApp extends React.Component {
   deleteOption(optionToRemove) {
     console.log("deleted" + optionToRemove);
     this.setState((prevState) => ({
-      options: prevState.options.filter((option) => {
-        return optionToRemove !== option;
-      })
-    }));
-  }
+      options: prevState.options.filter((option) =>  optionToRemove !== option)}));
+}
   handleAddOption (option) {
     if (!option) {
       return 'Enter valid value to add item'

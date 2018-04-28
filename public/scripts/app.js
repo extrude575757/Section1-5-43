@@ -42,8 +42,7 @@ var IndecisionApp = function (_React$Component) {
         return {
           options: prevState.options.filter(function (option) {
             return optionToRemove !== option;
-          })
-        };
+          }) };
       });
     }
   }, {
