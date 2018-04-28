@@ -28,10 +28,9 @@ var IndecisionApp = function (_React$Component) {
   _createClass(IndecisionApp, [{
     key: 'deleteOptions',
     value: function deleteOptions() {
+      console.log("deleteoptions");
       this.setState(function () {
-        return {
-          options: []
-        };
+        return { options: [] };
       });
     }
   }, {

@@ -10,18 +10,17 @@ class IndecisionApp extends React.Component {
   }
   deleteOptions () {
     console.log("deleteoptions");
-    this.setState(() => ({  options: []})); }
+    this.setState(() => ({  options: []})); };
   handleAddOption (option) {
     if (!option) {
       return 'Enter valid value to add item'
     } else if (this.state.options.indexOf(option) > -1) {
       return 'This option already exists'
     }
-    this.setState((prevState) => {
-      return {
-        options: prevState.options.concat(option)
-      }
-    })
+    this.setState((prevState) => ({
+      options: prevState.options.concat(option)
+    }));
+    
   }
   pickOptions () {
     const randomNum = Math.floor(Math.random() * this.state.options.length)
@@ -109,9 +108,7 @@ class AddOptions extends React.Component {
     const option = e.target.elements.option.value.trim()
     const error = this.props.handleAddOption(option)
     console.log('error' + error)
-    this.setState(() => {
-      return { error}
-    })
+    this.setState(() => ({error}));
   }
 
   render () { 
