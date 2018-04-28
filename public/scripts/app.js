@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -27,7 +27,29 @@ var IndecisionApp = function (_React$Component) {
   }
 
   _createClass(IndecisionApp, [{
-    key: "deleteOptions",
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      /// Localstorage only works with strings & will convert numbers to strings
+      // To fetch objects back from local storage, one can use json to convert objects to strings
+      // Then convert them back from strings with stringify back to objects with parse
+      localStorage.setItem('name', 'Andrew');
+      var json = JSON.stringify({ age: 28 });
+      console.log(JSON.parse(json));
+      console.log('Parsing a json object age is ' + JSON.parse(json).age);
+      console.log("Mountaed" + localStorage.getItem('name'));
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevState, prevProps) {
+      console.log("Updated");
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      console.log("unmounted");
+    }
+  }, {
+    key: 'deleteOptions',
     value: function deleteOptions() {
       console.log("deleteoptions");
       this.setState(function () {
@@ -35,7 +57,7 @@ var IndecisionApp = function (_React$Component) {
       });
     }
   }, {
-    key: "deleteOption",
+    key: 'deleteOption',
     value: function deleteOption(optionToRemove) {
       console.log("deleted" + optionToRemove);
       this.setState(function (prevState) {
@@ -46,7 +68,7 @@ var IndecisionApp = function (_React$Component) {
       });
     }
   }, {
-    key: "handleAddOption",
+    key: 'handleAddOption',
     value: function handleAddOption(option) {
       if (!option) {
         return 'Enter valid value to add item';
@@ -60,7 +82,7 @@ var IndecisionApp = function (_React$Component) {
       });
     }
   }, {
-    key: "pickOptions",
+    key: 'pickOptions',
     value: function pickOptions() {
       var randomNum = Math.floor(Math.random() * this.state.options.length);
       var option = this.state.options[randomNum];
@@ -68,18 +90,18 @@ var IndecisionApp = function (_React$Component) {
       console.log(randomNum);
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
 
       var subTitle = 'Put your life in the hands of a computer';
       var quote = React.createElement(
-        "i",
+        'i',
         null,
-        "Never Know What to do"
+        'Never Know What to do'
       );
 
       return React.createElement(
-        "div",
+        'div',
         null,
         React.createElement(Header, { quote: quote }),
         React.createElement(Action, { hasOptions: this.state.options.length > 0, pickOptions: this.pickOptions }),
@@ -100,20 +122,20 @@ IndecisionApp.defaultProps = {
 
 var Header = function Header(props) {
   return React.createElement(
-    "div",
+    'div',
     null,
     React.createElement(
-      "h1",
+      'h1',
       null,
       props.title
     ),
     props.subTitle && React.createElement(
-      "h2",
+      'h2',
       null,
       props.subTitle
     ),
     React.createElement(
-      "h3",
+      'h3',
       null,
       props.quote
     )
@@ -126,24 +148,24 @@ Header.defaultProps = {
 
 var Action = function Action(props) {
   return React.createElement(
-    "div",
+    'div',
     null,
     React.createElement(
-      "button",
+      'button',
       { onClick: props.pickOptions, disabled: !props.hasOptions },
-      "What should I do?"
+      'What should I do?'
     )
   );
 };
 
 var Options = function Options(props) {
   return React.createElement(
-    "div",
+    'div',
     null,
     React.createElement(
-      "button",
+      'button',
       { onClick: props.deleteOptions },
-      "Remove All"
+      'Remove All'
     ),
     props.options.map(function (option) {
       return React.createElement(Option, { key: option,
@@ -154,17 +176,17 @@ var Options = function Options(props) {
 
 var Option = function Option(props) {
   return React.createElement(
-    "div",
+    'div',
     null,
     props.optionText,
     React.createElement(
-      "button",
+      'button',
       {
         onClick: function onClick() {
           props.deleteOption(props.optionText);
         }
       },
-      "Delete"
+      'Delete'
     )
   );
 };
@@ -185,7 +207,7 @@ var AddOptions = function (_React$Component2) {
   }
 
   _createClass(AddOptions, [{
-    key: "handleAddOption",
+    key: 'handleAddOption',
     value: function handleAddOption(e) {
       e.preventDefault();
       var option = e.target.elements.option.value.trim();
@@ -196,27 +218,27 @@ var AddOptions = function (_React$Component2) {
       });
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       return React.createElement(
-        "div",
+        'div',
         null,
         this.state.error && React.createElement(
-          "p",
+          'p',
           null,
           this.state.error
         ),
         React.createElement(
-          "form",
+          'form',
           { onSubmit: this.handleAddOption },
-          React.createElement("input", { type: "text", name: "option" }),
+          React.createElement('input', { type: 'text', name: 'option' }),
           React.createElement(
-            "button",
+            'button',
             null,
-            "Add Option"
+            'Add Option'
           )
         ),
-        "Add Options Component here"
+        'Add Options Component here'
       );
     }
   }]);

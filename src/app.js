@@ -9,6 +9,22 @@ class IndecisionApp extends React.Component {
       options: props.options
     }
   }
+  componentDidMount(){
+    /// Localstorage only works with strings & will convert numbers to strings
+    // To fetch objects back from local storage, one can use json to convert objects to strings
+    // Then convert them back from strings with stringify back to objects with parse
+    localStorage.setItem('name','Andrew');
+    const json = JSON.stringify({age: 28});
+    console.log(JSON.parse(json));
+    console.log('Parsing a json object age is '+JSON.parse(json).age);
+    console.log("Mountaed"+localStorage.getItem('name'));
+  }
+  componentDidUpdate(prevState, prevProps){
+    console.log("Updated");
+  }
+  componentWillUnmount(){
+    console.log("unmounted");
+  }
   deleteOptions () {
     console.log("deleteoptions");
     this.setState(() => ({  options: []})); 
@@ -118,6 +134,7 @@ class AddOptions extends React.Component {
       error: undefined
     }
   }
+   
   handleAddOption (e) {
     e.preventDefault()
     const option = e.target.elements.option.value.trim()

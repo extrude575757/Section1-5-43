@@ -8,3 +8,8 @@ Changes to both cause re-renders: For state the component itself can change the 
 Differences
 Prop is defined from the parent above. Cant be changed by component.
 State is defined by the component itself. Can be changed by component.
+
+Class based Components have an ability stateless functional components do not have and it is why 
+stateless functional components are so fast. Class based components have different functions
+that fire at different times in the components life cycle. overriding componentDidMount() allows you to have 
+access to that function after the components constructor first mounts itself 
