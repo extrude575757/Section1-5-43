@@ -201,4 +201,4 @@ class AddOptions extends React.Component {
 //     );
 // };
 
-ReactDOM.render(<IndecisionApp options={['Devils Den', 'Fork Fucks']} />, document.getElementById('app'))
+ReactDOM.render(<IndecisionApp options={[]} />, document.getElementById('app'))
