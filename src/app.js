@@ -93,7 +93,7 @@ try{
 
 const Header = (props) => {
     return (
-        <div>
+        <div> 
           <h1>{props.title}</h1>
           {props.subTitle && <h2>{props.subTitle}</h2> }
           <h3>{props.quote}</h3>
