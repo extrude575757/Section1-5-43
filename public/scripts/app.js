@@ -19,7 +19,7 @@ var IndecisionApp = function (_React$Component) {
     _this.deleteOptions = _this.deleteOptions.bind(_this);
     _this.pickOptions = _this.pickOptions.bind(_this);
     _this.handleAddOption = _this.handleAddOption.bind(_this);
-    _this.deleteOption = _this.deleteOption.bind(_this);
+    _this.handleDeleteOption = _this.handleDeleteOption.bind(_this);
     _this.state = {
       options: props.options
     };
@@ -32,16 +32,33 @@ var IndecisionApp = function (_React$Component) {
       /// Localstorage only works with strings & will convert numbers to strings
       // To fetch objects back from local storage, one can use json to convert objects to strings
       // Then convert them back from strings with stringify back to objects with parse
-      localStorage.setItem('name', 'Andrew');
-      var json = JSON.stringify({ age: 28 });
-      console.log(JSON.parse(json));
-      console.log('Parsing a json object age is ' + JSON.parse(json).age);
-      console.log("Mountaed" + localStorage.getItem('name'));
+      // localStorage.setItem('name','Andrew');
+      // const json = JSON.stringify({age: 28});
+      // console.log(JSON.parse(json));
+      // console.log('Parsing a json object age is '+JSON.parse(json).age);
+      // console.log("Mountaed"+localStorage.getItem('name'));
+
+      try {
+        var json = localStorage.getItem('options');
+        var options = JSON.parse(json);
+        if (options) {
+          this.setState(function () {
+            return { options: options };
+          });
+        }
+      } catch (e) {
+        //do nothing
+
+      }
     }
   }, {
     key: 'componentDidUpdate',
-    value: function componentDidUpdate(prevState, prevProps) {
-      console.log("Updated");
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (prevState.options.length !== this.state.options.length) {
+        console.log("Updated + Saving Data!");
+        var json = JSON.stringify(this.state.options);
+        localStorage.setItem('options', json);
+      }
     }
   }, {
     key: 'componentWillUnmount',
@@ -57,8 +74,8 @@ var IndecisionApp = function (_React$Component) {
       });
     }
   }, {
-    key: 'deleteOption',
-    value: function deleteOption(optionToRemove) {
+    key: 'handleDeleteOption',
+    value: function handleDeleteOption(optionToRemove) {
       console.log("deleted" + optionToRemove);
       this.setState(function (prevState) {
         return {
@@ -106,7 +123,7 @@ var IndecisionApp = function (_React$Component) {
         React.createElement(Header, { quote: quote }),
         React.createElement(Action, { hasOptions: this.state.options.length > 0, pickOptions: this.pickOptions }),
         React.createElement(Options, { option1: this.state.options[0], options: this.state.options,
-          deleteOptions: this.deleteOptions, deleteOption: this.deleteOption }),
+          deleteOptions: this.deleteOptions, handleDeleteOption: this.handleDeleteOption }),
         React.createElement(Option, null),
         React.createElement(AddOptions, { handleAddOption: this.handleAddOption })
       );
@@ -167,9 +184,14 @@ var Options = function Options(props) {
       { onClick: props.deleteOptions },
       'Remove All'
     ),
+    props.options.length === 0 && React.createElement(
+      'p',
+      null,
+      'Please Add Options, Sir.'
+    ),
     props.options.map(function (option) {
       return React.createElement(Option, { key: option,
-        optionText: option, deleteOption: props.deleteOption });
+        optionText: option, handleDeleteOption: props.handleDeleteOption });
     })
   );
 };
@@ -182,8 +204,8 @@ var Option = function Option(props) {
     React.createElement(
       'button',
       {
-        onClick: function onClick() {
-          props.deleteOption(props.optionText);
+        onClick: function onClick(e) {
+          props.handleDeleteOption(props.optionText);
         }
       },
       'Delete'
@@ -216,6 +238,9 @@ var AddOptions = function (_React$Component2) {
       this.setState(function () {
         return { error: error };
       });
+      if (!error) {
+        e.target.elements.option.value = '';
+      }
     }
   }, {
     key: 'render',

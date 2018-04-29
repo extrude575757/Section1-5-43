@@ -13,3 +13,40 @@ Class based Components have an ability stateless functional components do not ha
 stateless functional components are so fast. Class based components have different functions
 that fire at different times in the components life cycle. overriding componentDidMount() allows you to have 
 access to that function after the components constructor first mounts itself 
+
+Using State corectly
+Do not modify state directly
+// Wrong
+this.state.comment = 'Hello';
+// Right
+this.setState({comment: 'Hello'});
+The only place where you can assign this.state is in the constructor. However you can read
+this.state any place else. 
+React may batch multiple setState() calls into a single update for performance.
+
+Because this.props and this.state may be updated asynchronously, you should not rely on their values for calculating the next state.
+
+For example, this code may fail to update the counter:
+
+// Wrong
+this.setState({
+  counter: this.state.counter + this.props.increment,
+});
+
+To fix it, use a second form of setState() that accepts a function rather than an object. That function will receive the previous state as the first argument, and the props at the time the update is applied as the second argument:
+
+// Correct
+this.setState((prevState, props) => ({
+  counter: prevState.counter + props.increment
+}));
+
+We used an arrow function above, but it also works with regular functions:
+
+// Correct
+this.setState(function(prevState, props) {
+  return {
+    counter: prevState.counter + props.increment
+  };
+});
+
+
