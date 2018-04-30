@@ -38,8 +38,11 @@ Quest to replace depencies: replace global moduels with local moduels
 4. Launch the scripts on terminal to use while inside of both directories with yarn run <scriptName>
 yarn run serve
 yarn run build
+now every time build is ran all the scripts get ran and are watched for updates
 
-
+To run webpack you must have a webpack.config.js file in the file you can take advantage of 
+import export modules. You must provide the import entry & output what files are being taken in & 
+when combining what file is the output path. 
 
 
 
