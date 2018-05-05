@@ -43,6 +43,31 @@ now every time build is ran all the scripts get ran and are watched for updates
 To run webpack you must have a webpack.config.js file in the file you can take advantage of 
 import export modules. You must provide the import entry & output what files are being taken in & 
 when combining what file is the output path. 
+---------------------------------------------------------------------------------------------------
+Importing npm moduels
+Step1.Install:  yarn add validator@10.1.0 to project folder
+Step2.Import: import name from name || import name from './name'
+ - When using ./ it searches for relative files when using from name without ./ relative files
+  webpack will look for the same name in the node modules folder
+Step3.Use:  import validator from 'validator';
+ console.log(validator.isEmail('3fucks@yahoo.com'));
+ Search npm validator
+ -------------------------------------------------------
+ Adding npm react libraries
+ Search npm react
+ search npm react-dom 
+ Step1. Install: yarn add react@16.3.2 react-dom@16.3.2
+Step2. Import: import React from 'react';
+import ReactDOM from 'react-dom';
+Step3. Use: now you can use the react library and access react-dom but we do not have support for jsx
+ - To use babel with webpack we need to access a loader which lets you customize a file with webpack. It is a way a file gets transformed when webpack uses it.
+ - So we will use it with babel to convert es6 to es5 and jsx to javascript
+
+ babel-core allows you to run tools from webpack while babel-cli allows you to run tools from command line
+babel-loader is a babel plugin & allows us to teach webpack how to run babel when webpack sees certain files
+yarn add babel-core@6.26.3 babel-loader@7.1.4
+.........................................................................
+We can use webpack module.rules & rules allows you to setup how you want webpack to handle your loader through an array
 
 
 

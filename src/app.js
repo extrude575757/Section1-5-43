@@ -1,19 +1,8 @@
-// import './utils.js'
-// import { square,add } from './utils.js';
+ // We are importing a npm module to use validator's isEmail validator function
+//  import validator from 'validator';
+//  console.log(validator.isCreditCard('3fucks@yahoo.com'));
+import React from 'react';
+import ReactDOM from 'react-dom';
+const template = <p>yo?<b>Pussy is good</b>Live Update? <i>stick my dick in a girls cum</i></p>
 
-// console.log("running is reall!!"+square(7)+add(2));
-// to only import a default import do
-///  import subtract from './utils.js';
-// subtract is default import
-//import subtract, {add, square } from './utils.js';
-// default import are special because they can be named any thing you want this will work
-// import './utils.js';
-// import fuckYouBitch, {add, square}  from './utils.js';
-// console.log(square(33));
-// console.log(fuckYouBitch(9,3));
-
-import fuckWad, {isAdult,canDrink} from './person.js';
-const age = 139;
-console.log('are you an adult '+isAdult(age)+'age: '+age);
-console.log('are you able to drink '+canDrink(age)+'age: '+age);
-console.log('are you a sneior '+fuckWad(age)+ 'age: '+age);
+ReactDOM.render(template,document.getElementById('app'));
