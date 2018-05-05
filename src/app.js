@@ -1,8 +1,143 @@
- // We are importing a npm module to use validator's isEmail validator function
-//  import validator from 'validator';
-//  console.log(validator.isCreditCard('3fucks@yahoo.com'));
 import React from 'react';
 import ReactDOM from 'react-dom';
-const template = <p>yo?<b>Pussy is good</b>Live Update? <i>stick my dick in a girls cum</i></p>
+// Webpack automatically searches for .js files & .js files don't need to be refered to as .js
+import AddOptions from './components/AddOptions';
+import Option from './components/Option';
+import Header from './components/Header';
+import Action from './components/Action';
+class IndecisionApp extends React.Component {
+  constructor (props) {
+    super(props);
+    this.deleteOptions = this.deleteOptions.bind(this);
+    this.pickOptions = this.pickOptions.bind(this);
+    this.handleAddOption = this.handleAddOption.bind(this);
+    this.handleDeleteOption = this.handleDeleteOption.bind(this);
+    this.state = {
+      options: []
+    };
+  }
+  componentDidMount(){
+    /// Localstorage only works with strings & will convert numbers to strings
+    // To fetch objects back from local storage, one can use json to convert objects to strings
+    // Then convert them back from strings with stringify back to objects with parse
+    // localStorage.setItem('name','Andrew');
+    // const json = JSON.stringify({age: 28});
+    // console.log(JSON.parse(json));
+    // console.log('Parsing a json object age is '+JSON.parse(json).age);
+    // console.log("Mountaed"+localStorage.getItem('name'));
 
-ReactDOM.render(template,document.getElementById('app'));
+try{
+  const json = localStorage.getItem('options');
+  const options = JSON.parse(json);
+  if (options){
+    this.setState(() => ({options}));
+  }
+} catch (e){
+  //do nothing
+
+}
+
+  
+
+}
+  componentDidUpdate(prevProps,prevState){
+    if(prevState.options.length !== this.state.options.length){
+      console.log("Updated + Saving Data!");
+      const json = JSON.stringify(this.state.options);
+      localStorage.setItem('options',json);
+    }
+  }
+  componentWillUnmount(){
+    console.log("unmounted");
+  }
+  deleteOptions () {
+    console.log("deleteoptions");
+    this.setState(() => ({  options: []})); 
+  }
+  handleDeleteOption(optionToRemove) {
+    console.log("deleted" + optionToRemove);
+    this.setState((prevState) => ({
+      options: prevState.options.filter((option) =>  optionToRemove !== option)}));
+}
+  handleAddOption (option) {
+    if (!option) {
+      return 'Enter valid value to add item';
+    } else if (this.state.options.indexOf(option) > -1) {
+      return 'This option already exists';
+    }
+    this.setState((prevState) => ({
+      options: prevState.options.concat(option)
+    }));
+    
+  }
+  pickOptions () {
+    const randomNum = Math.floor(Math.random() * this.state.options.length);
+    const option = this.state.options[randomNum];
+    alert(option);
+    console.log(randomNum);
+  }
+  render () {
+
+    const subTitle = 'Put your life in the hands of a computer';
+    const quote = <i>Never Know What to do</i>;
+
+    return (
+      <div>
+        <Header    quote={quote} />
+        <Action hasOptions={this.state.options.length > 0} pickOptions={this.pickOptions} />
+        <Options option1={this.state.options[0]} options={this.state.options} 
+        deleteOptions={this.deleteOptions} handleDeleteOption={this.handleDeleteOption} />
+        <Option />
+        <AddOptions handleAddOption={this.handleAddOption} />
+      </div>
+    );
+  }
+}
+////////// The default prop to set the this.state prop value in constructor
+// IndecisionApp.defaultProps = {
+//     options: []
+// };
+
+
+
+
+
+
+
+
+const Options = (props) => {
+    return (
+        <div>
+          <button onClick={props.deleteOptions}>
+            Remove All
+          </button>
+          {props.options.length === 0 && <p>Please Add Options, Sir.</p>}
+          {
+       props.options.map((option) => <Option key={option} 
+       optionText={option} handleDeleteOption={props.handleDeleteOption} />
+       )}
+        </div>
+      );
+};
+
+
+
+
+
+/*
+**Stateless Functional Component
+*/ // A class based component's prop is defined with this.props.name 
+///  While stateless functional component is  defined by props.name
+/// We cannot use state inside these components WE can indeed use props to pass data
+// These are faster than class based react components because there is no over heard from code concerned with state
+// It gets the jsx & returns it. There is no overhead. These said to be easier to read, write, & test
+// const User = (props) =>{
+//     return (
+//         <div>
+//         <p>Name: {props.name}</p> 
+//         <p>Age: {props.age *(4+3)}</p>
+//         </div>
+//     );
+// };
+
+ReactDOM.render(<IndecisionApp options={[]} />, document.getElementById('app'))

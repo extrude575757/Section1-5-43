@@ -1,3 +1,7 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+// Webpack automatically searches for .js files & .js files don't need to be refered to as .js
+import AddOptions from './components/AddOptions';
 class IndecisionApp extends React.Component {
   constructor (props) {
     super(props);
@@ -147,43 +151,7 @@ const Option = (props) => {
       );
 };
 
-class AddOptions extends React.Component {
-  constructor (props) {
-    super(props);
-    this.handleAddOption = this.handleAddOption.bind(this);
-    this.state = {
-      error: undefined
-    };
-  }
-   
-  handleAddOption (e) {
-    e.preventDefault();
-    const option = e.target.elements.option.value.trim();
-    const error = this.props.handleAddOption(option);
-    console.log('error' + error);
-    this.setState(() => ({error}));
-    if (!error){
-      e.target.elements.option.value = '';
-    }
-  }
 
-  render () { 
-    return (
-      <div>
-        {this.state.error && <p>
-                               {this.state.error}
-                             </p>}
-        <form onSubmit={this.handleAddOption}>
-          <input type='text' name='option' />
-          <button>
-            Add Option
-          </button>
-        </form>
-        Add Options Component here
-      </div>
-    );
-  }
-}
 
 /*
 **Stateless Functional Component
