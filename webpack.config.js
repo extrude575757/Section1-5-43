@@ -1,5 +1,5 @@
 const path = require('path');
-console.log('yonigga'+path.join(__dirname, 'public'));
+///console.log('yonigga'+path.join(__dirname, 'public'));
 module.exports = {
     entry: './src/app.js',
     output: {
