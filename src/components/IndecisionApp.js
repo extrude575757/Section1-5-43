@@ -36,7 +36,7 @@ try{
     }
   }
   componentWillUnmount(){
-    console.log("unmountated");
+    console.log("unmountated!");
   }
   deleteOptions () {
     console.log("deleteoptions");

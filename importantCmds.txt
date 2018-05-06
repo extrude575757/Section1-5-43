@@ -68,7 +68,13 @@ babel-loader is a babel plugin & allows us to teach webpack how to run babel whe
 yarn add babel-core@6.26.3 babel-loader@7.1.4
 .........................................................................
 We can use webpack module.rules & rules allows you to setup how you want webpack to handle your loader through an array
-
+-----------------------------------------------
+Install webpack-dev-server locally with --
+  folder/ yarn add  webpack-dev-server@3.1.4
+Now we run the yarn script 
+  yarn run dev-server
+Type in localhost:8080 to visit webpage on browser
+Now it auto saves. 
 
 
 
