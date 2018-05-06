@@ -6,16 +6,10 @@ import Header from './Header';
 import Action from './Action';
 import Options from './Options';
  export default class IndecisionApp extends React.Component {
-  constructor (props) {
-    super(props);
-    this.deleteOptions = this.deleteOptions.bind(this);
-    this.pickOptions = this.pickOptions.bind(this);
-    this.handleAddOption = this.handleAddOption.bind(this);
-    this.handleDeleteOption = this.handleDeleteOption.bind(this);
-    this.state = {
-      options: []
-    };
-  }
+  state = {
+    options: []
+  };
+  
   componentDidMount(){
 try{
   const json = localStorage.getItem('options');
@@ -38,16 +32,16 @@ try{
   componentWillUnmount(){
     console.log("unmountated!");
   }
-  deleteOptions () {
+  deleteOptions = () => {
     console.log("deleteoptions");
     this.setState(() => ({  options: []})); 
   }
-  handleDeleteOption(optionToRemove) {
+  handleDeleteOption = (optionToRemove) => {
     console.log("deleted" + optionToRemove);
     this.setState((prevState) => ({
       options: prevState.options.filter((option) =>  optionToRemove !== option)}));
 }
-  handleAddOption (option) {
+  handleAddOption = (option) => {
     if (!option) {
       return 'Enter valid value to add item';
     } else if (this.state.options.indexOf(option) > -1) {
@@ -57,7 +51,7 @@ try{
       options: prevState.options.concat(option)
     })); 
   }
-  pickOptions () {
+  pickOptions = () => {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randomNum];
     alert(option);

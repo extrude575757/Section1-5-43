@@ -75,7 +75,11 @@ Now we run the yarn script
   yarn run dev-server
 Type in localhost:8080 to visit webpage on browser
 Now it auto saves. 
-
+---------------------------------------------------------------------------------------
+Transform-class-properties allows us to not have to use the this object in the constructor to better refactor
+To intsall transform-class-properties
+  C:- yarn add babel-plugin-transform-class-properties
+---------------------------------------------------------------------------
 
 
 
