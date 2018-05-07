@@ -1,15 +1,12 @@
 import React from 'react';
 // export default cannot do this with const but can do so with default class definitions
 export default class AddOptions extends React.Component {
-    constructor (props) {
-      super(props);
-      this.handleAddOption = this.handleAddOption.bind(this);
-      this.state = {
-        error: undefined
-      };
-    }
+  state = {
+    error: undefined
+  };
+    
      
-    handleAddOption (e) {
+    handleAddOption = (e) => {
       e.preventDefault();
       const option = e.target.elements.option.value.trim();
       const error = this.props.handleAddOption(option);

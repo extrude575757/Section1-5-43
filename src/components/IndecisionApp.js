@@ -9,6 +9,32 @@ import Options from './Options';
   state = {
     options: []
   };
+
+  deleteOptions = () => {
+    console.log("deleteoptions");
+    this.setState(() => ({  options: []})); 
+  };
+  handleDeleteOption = (optionToRemove) => {
+    console.log("deleted" + optionToRemove);
+    this.setState((prevState) => ({
+      options: prevState.options.filter((option) =>  optionToRemove !== option)}));
+};
+  handleAddOption = (option) => {
+    if (!option) {
+      return 'Enter valid value to add item';
+    } else if (this.state.options.indexOf(option) > -1) {
+      return 'This option already exists';
+    }
+    this.setState((prevState) => ({
+      options: prevState.options.concat(option)
+    })); 
+  };
+  pickOptions = () => {
+    const randomNum = Math.floor(Math.random() * this.state.options.length);
+    const option = this.state.options[randomNum];
+    alert(option);
+    console.log(randomNum);
+  };
   
   componentDidMount(){
 try{
@@ -32,31 +58,7 @@ try{
   componentWillUnmount(){
     console.log("unmountated!");
   }
-  deleteOptions = () => {
-    console.log("deleteoptions");
-    this.setState(() => ({  options: []})); 
-  }
-  handleDeleteOption = (optionToRemove) => {
-    console.log("deleted" + optionToRemove);
-    this.setState((prevState) => ({
-      options: prevState.options.filter((option) =>  optionToRemove !== option)}));
-}
-  handleAddOption = (option) => {
-    if (!option) {
-      return 'Enter valid value to add item';
-    } else if (this.state.options.indexOf(option) > -1) {
-      return 'This option already exists';
-    }
-    this.setState((prevState) => ({
-      options: prevState.options.concat(option)
-    })); 
-  }
-  pickOptions = () => {
-    const randomNum = Math.floor(Math.random() * this.state.options.length);
-    const option = this.state.options[randomNum];
-    alert(option);
-    console.log(randomNum);
-  }
+  
   render () {
 
     const subTitle = 'Put your life in the hands of a computer';

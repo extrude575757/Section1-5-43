@@ -3,31 +3,32 @@ import ReactDOM from 'react-dom';
 import IndecisionApp from './components/IndecisionApp';
 // Webpack automatically searches for .js files & .js files don't need to be 
 //refered to as .js
-ReactDOM.render(<IndecisionApp />, document.getElementById('app'))
-  
-class oldSin {
-    constructor(){
-        this.name = 'fucks';
-        this.getGreeting = this.getGreeting.bind(this); // Bind greeting so borkenThisBinding does not have type error this is undefined error
-    }
-    getGreeting(){
-        return 'Hello your name is '+this.name;
-    }
-}
-const o = new oldSin();
-const brokenThisBinding = o.getGreeting;
-console.log(brokenThisBinding());
-console.log(o);
+//ReactDOM.render(<IndecisionApp />, document.getElementById('app'))
 
-// With the babel-plugin-transform-class-properties we don't need to declar this for class names. It will also eliminate the need for a constructor handy for refactoringcode
-class newSin {
-        name= "fucks";
-        getGreeting = () => {
-            return 'Helow your name is'+ name; 
-        }
-    
-}
-const f = new newSin();
-const ff  = f.getGreeting;
-console.log(ff()); // Now with new syntax we do not break the this binding
-console.log(f.name); 
+const Layout = (props) => {
+    return (
+        <div>
+        <p>Header</p>
+        {props.content}
+        {props.children}
+        <p>Footer</p>
+        </div>
+    );
+};
+
+const template = (
+        <div>
+        <h1>Page Title</h1>
+        <p>This is some content!!</p>
+        </div>   
+);
+// One way to render jsx into the browser
+//ReactDOM.render(<Layout content={template} />, document.getElementById('app')); pass threw props
+// 2nd way to render jsx into the browser must be passed threw props.children
+ReactDOM.render((<Layout content={template}>
+    <div>
+    <h2><i>Page Content Title</i></h2>
+    <p>This is my Page</p>
+    </div>
+</Layout>), document.getElementById('app')
+);
