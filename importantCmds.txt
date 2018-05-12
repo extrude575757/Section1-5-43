@@ -80,7 +80,17 @@ Transform-class-properties allows us to not have to use the this object in the c
 To intsall transform-class-properties
   C:- yarn add babel-plugin-transform-class-properties
 ---------------------------------------------------------------------------
-
+Install react-modal
+yarn add react-modal@2.2.2
+------------------------------------------------------------------------------
+ Dave Ceddia Mod Mr212 • a year ago
+Either way is fine. I like toggling the actual component because I can look at the DOM and see that it's not there. The css toggle leaves phantom elements on the page. But really, either way is fine.
+One thing to consider, though: when components enter and leave, their lifecycle methods are called (componentDidMount, etc). Hiding and showing with CSS will prevent these from being called. Neither is "better", but depending on your use case,
+you might prefer one of those behaviors over the other.
+An example: Say you load data in componentDidMount. You rely on that event to "refresh" the data every time the modal is opened.
+If it's being shown/hidden with CSS, componentDidMount will only be called the first time it opens. However, if the component is being removed from the DOM entirely, then componentDidMount will be called every time it opens.
+I should mention that this example doesn't apply to the Modal in this article, because it doesn't have any of this behavior :) Something to consider if you're writing your own though.
+---------------------------------------------------------------------------------------
 
 
 
