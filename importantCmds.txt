@@ -91,7 +91,23 @@ An example: Say you load data in componentDidMount. You rely on that event to "r
 If it's being shown/hidden with CSS, componentDidMount will only be called the first time it opens. However, if the component is being removed from the DOM entirely, then componentDidMount will be called every time it opens.
 I should mention that this example doesn't apply to the Modal in this article, because it doesn't have any of this behavior :) Something to consider if you're writing your own though.
 ---------------------------------------------------------------------------------------
-
+Install css addon Variables to add style with css to React
+yarn add style-loader@0.21 css-loader@0.28.11
+Installs style-loader & css-loader
+inside modules within webpack.config.js add:
+{
+            test: /\.css$/,
+            use: [
+                'style-loader',
+                'css-loader'
+            ]
+        }
+Every time it sees a file ending in .css, It will look to the css-loader, then 
+dump all the styles into the style-loader.
+---------------------------------------------------------------------------------
+How to install sass and use css with scss files
+sass-loader allows us to import sass files. Node-sass takes the sass code and converts it to regular css
+yarn add sass-loader@7.0.1 node-sass@4.9.0
 
 
 
