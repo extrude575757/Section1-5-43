@@ -80,7 +80,7 @@ try{
     const quote = <i>Never Know What to do</i>;
 
     return (
-      <div>
+      <div >
         <Header    quote={quote} />
         <Action hasOptions={this.state.options.length > 0} pickOptions={this.pickOptions} />
         <Options option1={this.state.options[0]} options={this.state.options} 

@@ -79,6 +79,9 @@ Now it auto saves.
 Transform-class-properties allows us to not have to use the this object in the constructor to better refactor
 To intsall transform-class-properties
   C:- yarn add babel-plugin-transform-class-properties
+---------------------------------------------------------------------------------------------
+In react there is a naming conflict with class for html & class in react so class within a div
+for html would be written as className="name" 
 ---------------------------------------------------------------------------
 Install react-modal
 yarn add react-modal@2.2.2
@@ -108,7 +111,8 @@ dump all the styles into the style-loader.
 How to install sass and use css with scss files
 sass-loader allows us to import sass files. Node-sass takes the sass code and converts it to regular css
 yarn add sass-loader@7.0.1 node-sass@4.9.0
-
+______________________________________________________________________________
+With css when naming file with an _ it is known as a partial because it contains part of the styles
 
 
 
