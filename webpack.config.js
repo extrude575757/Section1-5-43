@@ -2,7 +2,7 @@ const path = require('path');
 ///console.log('yonigga'+path.join(__dirname, 'public'));
 /// Whenever you see a file that ends in .js run it threw babel & ignore the node_modules folder
 // sass-loader uses node-sass to run the scss file
-
+// the ? mark is used to make the s optional and it so test looks for css or scss files
 module.exports = {
     entry: './src/app.js',
     output: {
@@ -15,7 +15,7 @@ module.exports = {
             test: /\.js$/,
             exclude: /node_modules/ 
         },{
-            test: /\.scss$/,
+            test: /\.s?css$/,
             use: [
                 'style-loader',
                 'css-loader',

@@ -1,4 +1,5 @@
 import React from 'react';
+
 //import ReactDOM from 'react-dom';
 import AddOptions from './AddOptions';
 //import Option from './components/Option';
@@ -76,16 +77,22 @@ try{
   
   render () {
 
-    const subTitle = 'Put your life in the hands of a computer';
-    const quote = <i>Never Know What to do</i>;
+    const subTitle = 'Never Know What to do';
+    const quote = <i>Put your life in the hands of a computer</i>;
 
     return (
       <div >
-        <Header    quote={quote} />
-        <Action hasOptions={this.state.options.length > 0} pickOptions={this.pickOptions} />
+        <Header  subTitle={subTitle}  quote={quote} 
+        />
+        <div className="container">
+        <Action hasOptions={this.state.options.length > 0} pickOptions={this.pickOptions} 
+        />
         <Options option1={this.state.options[0]} options={this.state.options} 
-        deleteOptions={this.deleteOptions} handleDeleteOption={this.handleDeleteOption} />
-        <AddOptions handleAddOption={this.handleAddOption} />
+        deleteOptions={this.deleteOptions} handleDeleteOption={this.handleDeleteOption} 
+        />
+        <AddOptions handleAddOption={this.handleAddOption} 
+        />
+        </div>
         <OptionModal selectedOption={this.state.selectedOption}
           clearSelectedOptions={this.clearSelectedOptions}
         />

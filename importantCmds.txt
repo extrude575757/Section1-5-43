@@ -113,6 +113,9 @@ sass-loader allows us to import sass files. Node-sass takes the sass code and co
 yarn add sass-loader@7.0.1 node-sass@4.9.0
 ______________________________________________________________________________
 With css when naming file with an _ it is known as a partial because it contains part of the styles
+-----------------------------------------------------------------------------------
+Install css normalizer to render all styles a default way in all browsers
+yarn add normalize.css
 
 
 
