@@ -2,14 +2,22 @@ import React from 'react';
 import Option from './Option';
 const Options = (props) => {
     return (
+        
         <div>
-          <button onClick={props.deleteOptions}>
+        <div className="widget-header">
+        <h3 className="widget-header--title">Your Options</h3>
+          <button 
+          className="button button--link"
+          onClick={props.deleteOptions}>
             Remove All
           </button>
-          {props.options.length === 0 && <p>Please Add Options, Sir.</p>}
+        </div>
+          {props.options.length === 0 && <p className="widget-message">Please Add Options, Sir.</p>}
           {
-       props.options.map((option) => <Option key={option} 
-       optionText={option} handleDeleteOption={props.handleDeleteOption} />
+       props.options.map((option, index) => <Option key={option} 
+       optionText={option} 
+       count={index + 1}
+       handleDeleteOption={props.handleDeleteOption} />
        )}
         </div>
       );

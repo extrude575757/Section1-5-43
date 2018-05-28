@@ -1,5 +1,9 @@
 @import './base/settings';
 @import './base/base'; /// To import the partial file
 @import './components/container';
+@import './components/add-option';
 @import './components/header';
-//@import './normalize.css/normalize.css';
+@import './components/option';
+@import './components/button';
+@import './components/widget';
+//@import './node_modules/normalize.css/normalize.css';

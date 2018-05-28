@@ -60,7 +60,7 @@ try{
     this.setState(() => ({options}));
   }
 } catch (e){
-  //do nothing
+  //do nothing  
 
 } 
 }
@@ -87,11 +87,15 @@ try{
         <div className="container">
         <Action hasOptions={this.state.options.length > 0} pickOptions={this.pickOptions} 
         />
+        <div className="widget">
         <Options option1={this.state.options[0]} options={this.state.options} 
         deleteOptions={this.deleteOptions} handleDeleteOption={this.handleDeleteOption} 
         />
         <AddOptions handleAddOption={this.handleAddOption} 
         />
+        
+        </div>
+        
         </div>
         <OptionModal selectedOption={this.state.selectedOption}
           clearSelectedOptions={this.clearSelectedOptions}
