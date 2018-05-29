@@ -7,6 +7,7 @@
 
 .add-option {
     display: flex;
+    flex-direction: column;
     padding: $m-size;
 }
 
@@ -20,4 +21,11 @@
     font-weight: 800;
     font-size: 2.2rem;
     color: $offWhite;
+}
+
+// @media is a css customization & below sets configurations for devices below 45rem
+@media (min-width: 45rem) {
+    .add-option {
+        flex-direction: row;
+    }
 }
